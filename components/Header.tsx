@@ -1,8 +1,8 @@
-import { chakra, Box } from '@chakra-ui/react'
+import { chakra, Box, Flex } from '@chakra-ui/react'
 import React from 'react'
 
 export function Header() {
   return (
-    <chakra.div>Header</chakra.div>
+    <Flex alignItems="center" px={0} py={5} h="20" w="full">Header</Flex>
   )
 }
