@@ -1,11 +1,12 @@
 import {
-    Avatar,
+  Avatar,
   chakra,
   Flex,
   HStack,
   Input,
   InputGroup,
   InputLeftElement,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { SearchIcon, SettingsIcon } from "@chakra-ui/icons";
 
@@ -56,7 +57,7 @@ export function Header() {
         ml="auto"
         flexShrink="0"
       >
-          <ColorModeSwitcher  />
+          <ColorModeSwitcher />
           <SettingsIcon />
           <Avatar name='Dan Abrahmov' src='https://bit.ly/dan-abramov' size="md" />
       </HStack>

@@ -1,5 +1,6 @@
-import { Container, useColorModeValue } from "@chakra-ui/react";
+import { Container, Flex, useColorModeValue } from "@chakra-ui/react";
 import Head from "next/head";
+import { DetailArea } from "../components/DetailArea";
 import { Header } from "../components/Header";
 
 export default function Home() {
@@ -21,6 +22,10 @@ export default function Home() {
         overflow="hidden"
       >
         <Header />
+
+        <Flex w="full" flexGrow={1} overflow="hidden">
+          <DetailArea />
+        </Flex>
       </Container>
     </div>
   );
