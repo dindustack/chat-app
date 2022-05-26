@@ -29,7 +29,7 @@ export function Header() {
       <chakra.div h="80px" zIndex={3} pos="relative" ml="280px">
         <InputGroup border="transparent" px={0} py={15} w="100%">
           <InputLeftElement pointerEvents="none">
-            <SearchIcon color="gray.300" mt={9} />
+            <SearchIcon color="gray.300" mt={10} />
           </InputLeftElement>
 
           <Input

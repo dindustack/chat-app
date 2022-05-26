@@ -2,19 +2,32 @@ import {
   Button,
   chakra,
   Circle,
+  Divider,
   Flex,
+  HStack,
   Input,
   InputGroup,
   InputRightElement,
+  Spacer,
   Text,
+  useColorMode,
   useColorModeValue,
+  VStack,
 } from "@chakra-ui/react";
 import React from "react";
 import { FiPhoneCall, FiVideo } from "react-icons/fi";
 import { SearchIcon } from "@chakra-ui/icons";
-import { FaRegFileExcel } from "react-icons/fa";
 
 export function DetailArea() {
+// change the color using useState
+  const [colorMode, setColorMode] = React.useState('blueColor');
+
+  // funtion to change the color based on user selection
+  const toggleColorChange = (color: string) => {
+    setColorMode(color);
+  };
+
+
   return (
     <Flex
       flexDir="column"
@@ -55,7 +68,7 @@ export function DetailArea() {
         </chakra.div>
         <Flex mt={5}>
           <Button
-            backgroundColor={"red"}
+            backgroundColor={colorMode}
             px={2.5}
             py={3.5}
             fontWeight="medium"
@@ -69,7 +82,7 @@ export function DetailArea() {
           <Button
             leftIcon={<FiVideo />}
             ml={2}
-            backgroundColor={"red"}
+            backgroundColor={colorMode}
             px={2.5}
             py={3.5}
             fontWeight="medium"
@@ -80,18 +93,19 @@ export function DetailArea() {
         </Flex>
 
         {/* Conversation */}
-        <chakra.div mt={10}>
-          <InputGroup border="transparent" px={0} py={15} w="100%">
+        <VStack spacing={3} mt={10}>
+          <InputGroup
+            border="transparent"
+            // px={0}
+            // py={4}
+            // w="100%"
+          >
             <Input
               placeholder="Search in conversation"
-              h="100%"
-              w="100%"
-              display="block"
+              // display="block"
               bgColor="transparent"
               border="none"
               color="bodyColor"
-              px={0}
-              py={15}
               fontSize="md"
               fontWeight="semibold"
               _placeholder={{ color: "inputChatColor" }}
@@ -100,32 +114,45 @@ export function DetailArea() {
               }}
             />
             <InputRightElement pointerEvents="none">
-              <SearchIcon color="gray.300" mt={9} />
+              <SearchIcon color="gray.300" />
             </InputRightElement>
           </InputGroup>
-        </chakra.div>
+
+          <Divider
+            borderBottom="1px solid"
+            borderBottomColor={useColorModeValue(
+              "borderColor",
+              "darkBorderColor"
+            )}
+          />
+          <HStack justifyContent="space-between">
+            <Text fontWeight="semibold" fontSize="md" color="inputChatColor">
+              Change Color
+            </Text>
+            <Spacer />
+            <Flex>
+              <Circle size={4} bg="blueColor" cursor="pointer" mr={4} onClick={() => toggleColorChange('blueColor')}></Circle>
+              <Circle
+                size={4}
+                bg="purpleColor"
+                cursor="pointer"
+                mr={4}
+                onClick={() => toggleColorChange('purpleColor')}
+              ></Circle>
+              <Circle size={4} bg="greenColor" cursor="pointer" mr={4} onClick={() => toggleColorChange('greenColor')}></Circle>
+              <Circle size={4} bg="orangeColor" cursor="pointer" onClick={() => toggleColorChange('orangeColor')}></Circle>
+            </Flex>
+          </HStack>
+          <Divider
+            borderBottom="1px solid"
+            borderBottomColor={useColorModeValue(
+              "borderColor",
+              "darkBorderColor"
+            )}
+          />
+        </VStack>
 
         {/* divider */}
-        <Flex
-        justifyContent="space-between"
-          fontWeight="semibold"
-          fontSize="sm"
-          borderBottom="1px solid"
-          borderBottomColor={useColorModeValue(
-            "borderColor",
-            "darkBorderColor"
-          )}
-          // px={3.5}
-          py={0}
-        >
-          <Text>Change Color</Text>
-          <Flex>
-            <Circle size={4} bg="blueColor" cursor="pointer" mr={4}></Circle>
-            <Circle size={4} bg="purpleColor" cursor="pointer" mr={4}></Circle>
-            <Circle size={4} bg="greenColor" cursor="pointer" mr={4}></Circle>
-            <Circle size={4} bg="orangeColor" cursor="pointer" ></Circle>
-          </Flex>
-        </Flex>
       </Flex>
     </Flex>
   );
