@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   chakra,
   Circle,
@@ -17,16 +18,25 @@ import {
 import React from "react";
 import { FiPhoneCall, FiVideo } from "react-icons/fi";
 import { SearchIcon } from "@chakra-ui/icons";
+import { FaRegThumbsUp } from "react-icons/fa";
 
 export function DetailArea() {
-// change the color using useState
-  const [colorMode, setColorMode] = React.useState('blueColor');
+  // change the color using useState
+  const [colorMode, setColorMode] = React.useState("blueColor");
+  const [buttonBgColor, setButtonBgColor] = React.useState("blueBgColor");
 
-  // funtion to change the color based on user selection
   const toggleColorChange = (color: string) => {
     setColorMode(color);
   };
 
+  const toggleButtonBgColor = (color: string) => {
+    setButtonBgColor(color);
+  };
+
+  const handleColorChange = (color: string, btnColorChange: string) => {
+    toggleColorChange(color);
+    toggleButtonBgColor(btnColorChange);
+  };
 
   return (
     <Flex
@@ -37,7 +47,7 @@ export function DetailArea() {
       borderLeft="1px solid"
       borderBottomColor={useColorModeValue("borderColor", "darkBorderColor")}
       ml="auto"
-      py={5}
+      px={5}
       pt={5}
       pb={0}
     >
@@ -66,23 +76,25 @@ export function DetailArea() {
         >
           Created by Chinwendu, 12 May 2022
         </chakra.div>
-        <Flex mt={5}>
+        <Flex mt={5} w="100%">
           <Button
-            backgroundColor={colorMode}
+            backgroundColor={buttonBgColor}
+            color={colorMode}
             px={2.5}
             py={3.5}
             fontWeight="medium"
+            flexGrow="1"
             fontSize="sm"
-            leftIcon={<FiPhoneCall />}
-            colorScheme="teal"
-            variant="solid"
+            leftIcon={<FiPhoneCall color={colorMode} />}
           >
             Call Group
           </Button>
           <Button
-            leftIcon={<FiVideo />}
+            leftIcon={<FiVideo color={colorMode} />}
             ml={2}
-            backgroundColor={colorMode}
+            flexGrow="1"
+            backgroundColor={buttonBgColor}
+            color={colorMode}
             px={2.5}
             py={3.5}
             fontWeight="medium"
@@ -91,69 +103,93 @@ export function DetailArea() {
             Video Chat
           </Button>
         </Flex>
-
-        {/* Conversation */}
-        <VStack spacing={3} mt={10}>
-          <InputGroup
-            border="transparent"
-            // px={0}
-            // py={4}
-            // w="100%"
-          >
-            <Input
-              placeholder="Search in conversation"
-              // display="block"
-              bgColor="transparent"
-              border="none"
-              color="bodyColor"
-              fontSize="md"
-              fontWeight="semibold"
-              _placeholder={{ color: "inputChatColor" }}
-              _focus={{
-                outline: "none",
-              }}
-            />
-            <InputRightElement pointerEvents="none">
-              <SearchIcon color="gray.300" />
-            </InputRightElement>
-          </InputGroup>
-
-          <Divider
-            borderBottom="1px solid"
-            borderBottomColor={useColorModeValue(
-              "borderColor",
-              "darkBorderColor"
-            )}
-          />
-          <HStack justifyContent="space-between">
-            <Text fontWeight="semibold" fontSize="md" color="inputChatColor">
-              Change Color
-            </Text>
-            <Spacer />
-            <Flex>
-              <Circle size={4} bg="blueColor" cursor="pointer" mr={4} onClick={() => toggleColorChange('blueColor')}></Circle>
-              <Circle
-                size={4}
-                bg="purpleColor"
-                cursor="pointer"
-                mr={4}
-                onClick={() => toggleColorChange('purpleColor')}
-              ></Circle>
-              <Circle size={4} bg="greenColor" cursor="pointer" mr={4} onClick={() => toggleColorChange('greenColor')}></Circle>
-              <Circle size={4} bg="orangeColor" cursor="pointer" onClick={() => toggleColorChange('orangeColor')}></Circle>
-            </Flex>
-          </HStack>
-          <Divider
-            borderBottom="1px solid"
-            borderBottomColor={useColorModeValue(
-              "borderColor",
-              "darkBorderColor"
-            )}
-          />
-        </VStack>
-
-        {/* divider */}
       </Flex>
+
+      {/* Detail */}
+      <VStack spacing={3} mt={10}>
+        <InputGroup border="transparent">
+          <Input
+            placeholder="Search in conversation"
+            bgColor="transparent"
+            border="none"
+            color="bodyColor"
+            fontSize="md"
+            fontWeight="semibold"
+            _placeholder={{ color: "inputChatColor" }}
+            paddingInlineStart={0}
+            _focus={{
+              outline: "none",
+            }}
+          />
+          <InputRightElement pointerEvents="none">
+            <SearchIcon color="gray.300" />
+          </InputRightElement>
+        </InputGroup>
+
+        <Divider
+          borderBottom="1px solid"
+          borderBottomColor={useColorModeValue(
+            "borderColor",
+            "darkBorderColor"
+          )}
+        />
+
+        <Flex justifyContent="space-between" w="100%">
+          <Text fontWeight="semibold" fontSize="md" color="inputChatColor">
+            Change Color
+          </Text>
+          <Flex>
+            <Circle
+              size={4}
+              bg="blueColor"
+              cursor="pointer"
+              mr={4}
+              onClick={() => handleColorChange("blueColor", "blueBgColor")}
+            ></Circle>
+            <Circle
+              size={4}
+              bg="purpleColor"
+              cursor="pointer"
+              mr={4}
+              onClick={() => handleColorChange("purpleColor", "purpleBgColor")}
+            ></Circle>
+            <Circle
+              size={4}
+              bg="greenColor"
+              cursor="pointer"
+              mr={4}
+              onClick={() => handleColorChange("greenColor", "greenBgColor")}
+            ></Circle>
+            <Circle
+              size={4}
+              bg="orangeColor"
+              cursor="pointer"
+              onClick={() => handleColorChange("orangeColor", "orangeBgColor")}
+            ></Circle>
+          </Flex>
+        </Flex>
+        <Divider
+          borderBottom="1px solid"
+          borderBottomColor={useColorModeValue(
+            "borderColor",
+            "darkBorderColor"
+          )}
+        />
+        <HStack justifyContent="space-between" w="100%">
+          <Text fontWeight="semibold" fontSize="md" color="inputChatColor">
+            Change Emoji
+          </Text>
+
+          <FaRegThumbsUp color="inputChatColor" />
+        </HStack>
+        <Divider
+          borderBottom="1px solid"
+          borderBottomColor={useColorModeValue(
+            "borderColor",
+            "darkBorderColor"
+          )}
+        />
+      </VStack>
     </Flex>
   );
 }
