@@ -6,6 +6,7 @@ import {
   Divider,
   Flex,
   HStack,
+  Icon,
   Input,
   InputGroup,
   InputRightElement,
@@ -16,28 +17,27 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
-import { FiPhoneCall, FiVideo } from "react-icons/fi";
+import { FiImage, FiPhoneCall, FiVideo } from "react-icons/fi";
 import { SearchIcon } from "@chakra-ui/icons";
 import { FaRegThumbsUp } from "react-icons/fa";
 
-export function DetailArea() {
-  // change the color using useState
-  const [colorMode, setColorMode] = React.useState("blueColor");
-  const [buttonBgColor, setButtonBgColor] = React.useState("blueBgColor");
+interface IDetailAreaProps {
+  color: string;
+  backgroundColor: string;
+  toggleBlueColor: any;
+  togglePurpleColor: any;
+  toggleGreenColor: any;
+  toggleOrangeColor: any;
+}
 
-  const toggleColorChange = (color: string) => {
-    setColorMode(color);
-  };
-
-  const toggleButtonBgColor = (color: string) => {
-    setButtonBgColor(color);
-  };
-
-  const handleColorChange = (color: string, btnColorChange: string) => {
-    toggleColorChange(color);
-    toggleButtonBgColor(btnColorChange);
-  };
-
+export function DetailArea({
+  color,
+  backgroundColor,
+  toggleBlueColor,
+  togglePurpleColor,
+  toggleGreenColor,
+  toggleOrangeColor,
+}: IDetailAreaProps) {
   return (
     <Flex
       flexDir="column"
@@ -78,23 +78,23 @@ export function DetailArea() {
         </chakra.div>
         <Flex mt={5} w="100%">
           <Button
-            backgroundColor={buttonBgColor}
-            color={colorMode}
+            backgroundColor={backgroundColor}
+            color={color}
             px={2.5}
             py={3.5}
             fontWeight="medium"
             flexGrow="1"
             fontSize="sm"
-            leftIcon={<FiPhoneCall color={colorMode} />}
+            leftIcon={<FiPhoneCall color={color} />}
           >
             Call Group
           </Button>
           <Button
-            leftIcon={<FiVideo color={colorMode} />}
+            leftIcon={<FiVideo color={color} />}
             ml={2}
             flexGrow="1"
-            backgroundColor={buttonBgColor}
-            color={colorMode}
+            backgroundColor={backgroundColor}
+            color={color}
             px={2.5}
             py={3.5}
             fontWeight="medium"
@@ -144,27 +144,27 @@ export function DetailArea() {
               bg="blueColor"
               cursor="pointer"
               mr={4}
-              onClick={() => handleColorChange("blueColor", "blueBgColor")}
+              onClick={toggleBlueColor}
             ></Circle>
             <Circle
               size={4}
               bg="purpleColor"
               cursor="pointer"
               mr={4}
-              onClick={() => handleColorChange("purpleColor", "purpleBgColor")}
+              onClick={togglePurpleColor}
             ></Circle>
             <Circle
               size={4}
               bg="greenColor"
               cursor="pointer"
               mr={4}
-              onClick={() => handleColorChange("greenColor", "greenBgColor")}
+              onClick={toggleGreenColor}
             ></Circle>
             <Circle
               size={4}
               bg="orangeColor"
               cursor="pointer"
-              onClick={() => handleColorChange("orangeColor", "orangeBgColor")}
+              onClick={toggleOrangeColor}
             ></Circle>
           </Flex>
         </Flex>
@@ -190,6 +190,15 @@ export function DetailArea() {
           )}
         />
       </VStack>
+
+      <Box mt={8}>
+        <HStack mb={5}>
+          <Icon as={FiImage} w={6} h={6} mr={2} color="detailFontColor" />
+          <Text fontSize="sm" fontWeight={600} color="detailFontColor">
+            Shared photos
+          </Text>
+        </HStack>
+      </Box>
     </Flex>
   );
 }

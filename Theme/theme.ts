@@ -23,7 +23,7 @@ export const theme = extendTheme({
     purpleBgColor: "#9f7aea1f",
     greenBgColor: "#38b2ab26",
     orangeBgColor: "#ed89361f",
-    
+    detailFontColor: "#919ca2",
   },
   fonts: {
     body: `'Manrope', sans-serif`,
