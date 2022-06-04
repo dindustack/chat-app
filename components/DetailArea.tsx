@@ -1,18 +1,20 @@
+import Link from 'next/link'
 import {
   Box,
   Button,
+  Center,
   chakra,
   Circle,
   Divider,
   Flex,
   HStack,
   Icon,
+  Image,
   Input,
   InputGroup,
   InputRightElement,
-  Spacer,
+  SimpleGrid,
   Text,
-  useColorMode,
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
@@ -20,6 +22,8 @@ import React from "react";
 import { FiImage, FiPhoneCall, FiVideo } from "react-icons/fi";
 import { SearchIcon } from "@chakra-ui/icons";
 import { FaRegThumbsUp } from "react-icons/fa";
+
+import { images } from "../Utils/Image";
 
 interface IDetailAreaProps {
   color: string;
@@ -198,6 +202,34 @@ export function DetailArea({
             Shared photos
           </Text>
         </HStack>
+
+        {/* Images*/}
+
+        <SimpleGrid columns={4} spacing={2} mb={5}>
+          {React.Children.toArray(
+            images.map((image) => (
+              // eslint-disable-next-line react/jsx-key
+              <Image
+                alt="random"
+                src={image.src}
+                boxSize="70px"
+                objectFit="cover"
+                borderRadius="lg"
+                objectPosition="center"
+              />
+            ))
+          )}
+        </SimpleGrid>
+
+        <Center mb={5}>
+          <Text color={color} fontSize="md" fontWeight="semibold">View more</Text>
+        </Center>
+
+        <Box mb={0} mt="auto">
+        <Link href="https://twitter.com/dindustack" target="_blank">
+          Home
+        </Link>
+        </Box>
       </Box>
     </Flex>
   );
