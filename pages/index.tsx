@@ -1,6 +1,8 @@
 import { Container, Flex, useColorModeValue } from "@chakra-ui/react";
 import Head from "next/head";
 import React from "react";
+import ChatArea from "../components/ChatArea";
+import ConversationArea from "../components/ConversationArea";
 import { DetailArea } from "../components/DetailArea";
 import { Header } from "../components/Header";
 
@@ -40,6 +42,8 @@ export default function Home() {
         <Header />
 
         <Flex w="full" flexGrow={1} overflow="hidden">
+          <ConversationArea />
+          <ChatArea />
           <DetailArea
             color={colorMode}
             backgroundColor={buttonBgColor}

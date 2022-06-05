@@ -24,6 +24,8 @@ export const theme = extendTheme({
     greenBgColor: "#38b2ab26",
     orangeBgColor: "#ed89361f",
     detailFontColor: "#919ca2",
+    messageHoverBg: "#eef2f4",
+    messageColor: "#969eaa",
   },
   fonts: {
     body: `'Manrope', sans-serif`,

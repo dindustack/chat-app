@@ -1,4 +1,5 @@
 import Link from 'next/link'
+// import { useDisclosure } from "@chakra-ui/react"
 import {
   Box,
   Button,
@@ -42,6 +43,7 @@ export function DetailArea({
   toggleGreenColor,
   toggleOrangeColor,
 }: IDetailAreaProps) {
+  // const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <Flex
       flexDir="column"
@@ -195,7 +197,7 @@ export function DetailArea({
         />
       </VStack>
 
-      <Box mt={8}>
+      <chakra.div mt={8}>
         <HStack mb={5}>
           <Icon as={FiImage} w={6} h={6} mr={2} color="detailFontColor" />
           <Text fontSize="sm" fontWeight={600} color="detailFontColor">
@@ -225,12 +227,14 @@ export function DetailArea({
           <Text color={color} fontSize="md" fontWeight="semibold">View more</Text>
         </Center>
 
-        <Box mb={0} mt="auto">
+        <chakra.div mb={0} mt="auto" >
         <Link href="https://twitter.com/dindustack" target="_blank">
-          Home
+          <Center __css={{ transition: "0.3s"}}>
+            <Text>Follow me on twitter</Text>
+          </Center>
         </Link>
-        </Box>
-      </Box>
+        </chakra.div>
+      </chakra.div>
     </Flex>
   );
 }
